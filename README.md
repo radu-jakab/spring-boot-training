@@ -8,19 +8,24 @@ That being said, this is by no means a comprehensive collection of everything Sp
 
 ## Pre-requisites
 - use IntelliJ for and IDE if possible
-- have Java 8, maven, npm, git installed
+- have Java 8, gradle, npm, git installed
 
-- discuss HTTP, AOP, Java Reflection
--- https://code.tutsplus.com/tutorials/http-the-protocol-every-web-developer-must-know-part-1--net-31177
--- http://www.andrewewhite.net/wordpress/2010/03/17/aspectj-annotation-tutorial/
--- https://www.sitepoint.com/java-reflection-api-tutorial/
+- discuss HTTP, AOP, Java Reflection  
+-- https://code.tutsplus.com/tutorials/http-the-protocol-every-web-developer-must-know-part-1--net-31177  
+-- http://www.andrewewhite.net/wordpress/2010/03/17/aspectj-annotation-tutorial/  
+-- https://www.sitepoint.com/java-reflection-api-tutorial/  
 
 ## The training case-study project
 As a case study for the project, we will buld a bookstore backend system.
 The requirements are presented in individual steps, starting with 00. Project Specs
 
+- [ ] what the final application will look like
+- [ ] data structure
+- [x] functional requirements
+
 ## Topics
 
 ### 01. Spring initializr
+Create a project using https://start.spring.io
 
 ### 02. Hello World
