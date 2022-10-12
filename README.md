@@ -29,3 +29,12 @@ The requirements are presented in individual steps, starting with 00. Project Sp
 Create a project using https://start.spring.io
 
 ### 02. Hello World
+The @Controller and @RestController annotation
+Exposing our first API endpoint
+
+### 03. Controllers
+Layer-based vs module-based folder structure
+Record classes
+Author, Book DTOs
+Author, Book endpoints
+Package scanning: convention vs configuration
