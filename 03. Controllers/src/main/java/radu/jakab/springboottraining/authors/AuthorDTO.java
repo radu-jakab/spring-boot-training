@@ -1,4 +1,4 @@
-package radu.jakab.springboottraining.author;
+package radu.jakab.springboottraining.authors;
 
 import java.time.LocalDate;
 

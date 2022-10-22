@@ -1,4 +1,4 @@
-package radu.jakab.springboottraining.author;
+package radu.jakab.springboottraining.authors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

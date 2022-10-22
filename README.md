@@ -38,3 +38,11 @@ Record classes
 Author, Book DTOs
 Author, Book endpoints
 Package scanning: convention vs configuration
+Spring components: @Controller, @Service, @Repository
+
+### 04. Services
+Author, Book CRUD operations
+Faked static objects
+Rewrite controllers to use services
+Postman
+
