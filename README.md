@@ -20,7 +20,7 @@ As a case study for the project, we will buld a bookstore backend system.
 The requirements are presented in individual steps, starting with 00. Project Specs
 
 - [ ] what the final application will look like
-- [ ] data structure
+- [x] data structure
 - [x] functional requirements
 
 ## Topics
@@ -35,8 +35,8 @@ Exposing our first API endpoint
 ### 03. Controllers
 Layer-based vs module-based folder structure
 Record classes
-Author, Book DTOs
-Author, Book endpoints
+Courier DTO (+ setup lombok)
+Courier endpoints
 Package scanning: convention vs configuration
 Spring components: @Controller, @Service, @Repository
 
@@ -46,15 +46,3 @@ Faked static objects
 Rewrite controllers to use services
 Postman
 
-
-
-1 entity with unattached list of sub-entities
-1 entity with list of owned sub-entities
-sub-entities always link up to parent
-1 many-to-many relation
-
-order
-	- client
-	- courier
-	- venue
-	- owned: order products
