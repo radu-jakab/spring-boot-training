@@ -8,7 +8,7 @@ That being said, this is by no means a comprehensive collection of everything Sp
 
 ## Pre-requisites
 - use IntelliJ for and IDE if possible
-- have Java 8, gradle, npm, git installed
+- have Java 17, docker, gradle, npm, git installed
 
 - discuss HTTP, AOP, Java Reflection  
 -- https://code.tutsplus.com/tutorials/http-the-protocol-every-web-developer-must-know-part-1--net-31177  
@@ -46,3 +46,15 @@ Faked static objects
 Rewrite controllers to use services
 Postman
 
+
+
+1 entity with unattached list of sub-entities
+1 entity with list of owned sub-entities
+sub-entities always link up to parent
+1 many-to-many relation
+
+order
+	- client
+	- courier
+	- venue
+	- owned: order products
