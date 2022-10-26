@@ -27,6 +27,8 @@ The requirements are presented in individual steps, starting with 00. Project Sp
 
 ### 01. Spring initializr
 Create a project using https://start.spring.io
+Select Maven packaging, Java language, Spring Boot 3.0.0, Java 17 and SPring Web dependency
+Observe the console output
 
 ### 02. Hello World
 The @Controller and @RestController annotation
@@ -35,13 +37,20 @@ Exposing our first API endpoint
 ### 03. Controllers
 Layer-based vs module-based folder structure
 Record classes
-Courier DTO (+ setup lombok)
-Courier endpoints
+Setup lombok
+Venue DTO, endpoints
+Courier DTO, endpoints
 Package scanning: convention vs configuration
 Spring components: @Controller, @Service, @Repository
 
-### 04. Services
-Author, Book CRUD operations
+### 04. OpenAPI and Swagger-UI
+Why OpenAPI; see also https://swagger.io/docs/specification/about/
+Add `springdoc-openapi-starter-webmvc-ui` dependency
+Check out http://localhost:8080/swagger-ui/index.html#/
+Controlling the OpenAPI spec: `@Tag`, `@Operation`, `@ApiResponse`, `@Schema`
+
+### 05. Services
+Venue, Courier operations
 Faked static objects
 Rewrite controllers to use services
 Postman

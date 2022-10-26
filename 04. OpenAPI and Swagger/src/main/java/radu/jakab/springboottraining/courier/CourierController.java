@@ -2,7 +2,8 @@ package radu.jakab.springboottraining.courier;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -11,61 +12,52 @@ import java.util.List;
 @RestController
 // all defined endpoints will have the common root "/courier"
 @RequestMapping("courier")
-public class CourierController {
+public class CourierController implements CourierAPI {
 
-    @PostMapping
-    public ResponseEntity<CourierDTO> create(@RequestBody CourierDTO courierDTO) {
+    public ResponseEntity<CourierDTO> create(CourierDTO courierDTO) {
         // TODO do nothing for now
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping
-    public ResponseEntity<CourierDTO> updateCourierInfo(@RequestBody CourierDTO courierDTO) {
+    public ResponseEntity<CourierDTO> updateCourierInfo(CourierDTO courierDTO) {
         // TODO do nothing for now
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("location/{courierId}")
-    public ResponseEntity<CourierDTO> updateCourierLocation(@PathVariable String courierId,
-                                                            @RequestParam Double lat,
-                                                            @RequestParam Double lon) {
+    public ResponseEntity<CourierDTO> updateCourierLocation(String courierId,
+                                                            Double lat,
+                                                            Double lon) {
         // TODO do nothing for now
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("activate/{courierId}")
-    public ResponseEntity<CourierDTO> activateCourier(@PathVariable String courierId) {
+    public ResponseEntity<CourierDTO> activateCourier(String courierId) {
         // TODO do nothing for now
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("deactivate/{courierId}")
-    public ResponseEntity<CourierDTO> deactivateCourier(@PathVariable String courierId) {
+    public ResponseEntity<CourierDTO> deactivateCourier(String courierId) {
         // TODO do nothing for now
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping
     public ResponseEntity<List<CourierDTO>> getAll() {
         // FIXME discuss why this is a bad idea
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("{id}")
-    public ResponseEntity<CourierDTO> getOne(@PathVariable String id) {
+    public ResponseEntity<CourierDTO> getOne(String id) {
         // TODO do nothing for now
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("assign-order")
-    public ResponseEntity<CourierDTO> getOne(@RequestParam String courierId,
-                                             @RequestParam String orderId) {
+    public ResponseEntity<CourierDTO> assignDelivery(String courierId,
+                                                     String orderId) {
         // TODO do nothing for now
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping("{id}")
-    public ResponseEntity<Object> delete(@PathVariable String id) {
+    public ResponseEntity<Object> delete(String id) {
         // TODO do nothing for now
         return new ResponseEntity<>(HttpStatus.OK);
     }
