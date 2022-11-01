@@ -55,3 +55,7 @@ Faked static objects
 Rewrite controllers to use services
 Postman
 
+
+
+validation
+- getOneMustExist

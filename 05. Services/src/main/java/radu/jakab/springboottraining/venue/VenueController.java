@@ -1,5 +1,6 @@
 package radu.jakab.springboottraining.venue;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,30 +13,35 @@ import java.util.List;
 @RestController
 // all defined endpoints will have the common root "/venue"
 @RequestMapping("venue")
+// build a constructor for all final fields, this will handle autowiring
+@RequiredArgsConstructor
 public class VenueController implements VenueAPI {
 
+    private final VenueService venueService;
+
     public ResponseEntity<VenueDTO> create(VenueDTO venueDTO) {
-        // TODO do nothing for now
-        return new ResponseEntity<>(HttpStatus.OK);
+        VenueDTO result = venueService.create(venueDTO);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     public ResponseEntity<VenueDTO> update(VenueDTO venueDTO) {
-        // TODO do nothing for now
-        return new ResponseEntity<>(HttpStatus.OK);
+        VenueDTO result = venueService.update(venueDTO);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     public ResponseEntity<VenueDTO> getOne(String id) {
-        // TODO do nothing for now
-        return new ResponseEntity<>(HttpStatus.OK);
+        VenueDTO result = venueService.getOne(id);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     public ResponseEntity<List<VenueDTO>> getAll() {
-        // FIXME discuss why this is a bad idea
-        return new ResponseEntity<>(HttpStatus.OK);
+        // FIXME this is a bad idea
+        List<VenueDTO> result = venueService.getAll();
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     public ResponseEntity<Object> delete(String id) {
-        // TODO do nothing for now
+        venueService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

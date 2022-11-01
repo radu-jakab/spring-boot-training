@@ -1,5 +1,6 @@
 package radu.jakab.springboottraining.courier;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,53 +13,58 @@ import java.util.List;
 @RestController
 // all defined endpoints will have the common root "/courier"
 @RequestMapping("courier")
+// build a constructor for all final fields, this will handle autowiring
+@RequiredArgsConstructor
 public class CourierController implements CourierAPI {
 
+    private final CourierService courierService;
+
     public ResponseEntity<CourierDTO> create(CourierDTO courierDTO) {
-        // TODO do nothing for now
-        return new ResponseEntity<>(HttpStatus.OK);
+        CourierDTO result = courierService.create(courierDTO);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     public ResponseEntity<CourierDTO> updateCourierInfo(CourierDTO courierDTO) {
-        // TODO do nothing for now
-        return new ResponseEntity<>(HttpStatus.OK);
+        CourierDTO result = courierService.updateCourierInfo(courierDTO);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     public ResponseEntity<CourierDTO> updateCourierLocation(String courierId,
                                                             Double lat,
                                                             Double lon) {
-        // TODO do nothing for now
-        return new ResponseEntity<>(HttpStatus.OK);
+        CourierDTO result = courierService.updateCourierLocation(courierId, lat, lon);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     public ResponseEntity<CourierDTO> activateCourier(String courierId) {
-        // TODO do nothing for now
-        return new ResponseEntity<>(HttpStatus.OK);
+        CourierDTO result = courierService.activateCourier(courierId);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     public ResponseEntity<CourierDTO> deactivateCourier(String courierId) {
-        // TODO do nothing for now
-        return new ResponseEntity<>(HttpStatus.OK);
+        CourierDTO result = courierService.deactivateCourier(courierId);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     public ResponseEntity<List<CourierDTO>> getAll() {
         // FIXME discuss why this is a bad idea
-        return new ResponseEntity<>(HttpStatus.OK);
+        List<CourierDTO> result = courierService.getAll();
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     public ResponseEntity<CourierDTO> getOne(String id) {
-        // TODO do nothing for now
-        return new ResponseEntity<>(HttpStatus.OK);
+        CourierDTO result = courierService.getOne(id);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     public ResponseEntity<CourierDTO> assignDelivery(String courierId,
                                                      String orderId) {
-        // TODO do nothing for now
-        return new ResponseEntity<>(HttpStatus.OK);
+        CourierDTO result = courierService.assignDelivery(courierId, orderId);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     public ResponseEntity<Object> delete(String id) {
-        // TODO do nothing for now
+        courierService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
