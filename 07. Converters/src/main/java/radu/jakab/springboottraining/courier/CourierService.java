@@ -21,6 +21,7 @@ public class CourierService {
     public CourierDTO create(CourierDTO courierDTO) {
         // map the DTO to an entity object
         Courier courier = courierMapper.mapDTOtoCourier(courierDTO);
+        courier.setActive(false);
 
         // add it to the database, and (!) read the resulting object
         // for new objects, the system creates the IDs
