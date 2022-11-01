@@ -8,7 +8,7 @@ That being said, this is by no means a comprehensive collection of everything Sp
 
 ## Pre-requisites
 - use IntelliJ for and IDE if possible
-- have Java 17, docker, maven, npm, git installed
+- have Java 17, docker, maven, npm, git, postman installed
 
 - discuss HTTP, AOP, Java Reflection  
 -- https://code.tutsplus.com/tutorials/http-the-protocol-every-web-developer-must-know-part-1--net-31177  
@@ -27,7 +27,7 @@ The requirements are presented in individual steps, starting with 00. Project Sp
 
 ### 01. Spring initializr
 Create a project using https://start.spring.io
-Select Maven packaging, Java language, Spring Boot 3.0.0, Java 17 and SPring Web dependency
+Select Maven packaging, Java language, Spring Boot 3.0.0, Java 17 and Spring Web dependency
 Observe the console output
 
 ### 02. Hello World
@@ -54,7 +54,6 @@ Controlling the OpenAPI spec: `@Tag`, `@Operation`, `@ApiResponse`, `@Schema`
 Venue, Courier operations
 Faked static objects
 Rewrite controllers to use services
-Postman
 
 ### 06. Entities and Repos
 Add Spring Data JPA, H2 in-memory database
@@ -131,6 +130,17 @@ Add mapstruct and annotation-processing support
 ```
 Create mappers for Venue and Courier
 Rewrite Venue and Courier Services to use mappers and link to database repos
+
+### 08. Postman
+Create collections and requests
+Import / export collections
+Using variables and scripts
+
+### 09. Seeding Data
+commandline runner
+seedData.sql
+Discuss Liquibase
+
 
 validation
 - getOneMustExist
