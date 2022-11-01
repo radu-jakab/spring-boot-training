@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>radu.jakab</groupId>
-    <artifactId>04-openapi</artifactId>
+    <artifactId>05-services</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-boot-training</name>
     <description>Demo project for Spring Boot</description>
