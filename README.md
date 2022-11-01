@@ -8,7 +8,7 @@ That being said, this is by no means a comprehensive collection of everything Sp
 
 ## Pre-requisites
 - use IntelliJ for and IDE if possible
-- have Java 17, docker, gradle, npm, git installed
+- have Java 17, docker, maven, npm, git installed
 
 - discuss HTTP, AOP, Java Reflection  
 -- https://code.tutsplus.com/tutorials/http-the-protocol-every-web-developer-must-know-part-1--net-31177  
@@ -35,6 +35,7 @@ The @Controller and @RestController annotation
 Exposing our first API endpoint
 
 ### 03. Controllers
+Layered architectures - rules and benefits
 Layer-based vs module-based folder structure
 Record classes
 Setup lombok
@@ -55,7 +56,45 @@ Faked static objects
 Rewrite controllers to use services
 Postman
 
-
+### 06. Entities and Repos
+Add Spring Data JPA, H2 in-memory database
+```        
+		<dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>8.0.0.Final</version>
+        </dependency>
+```
+Change app configuration file to .yml
+Configure H2 database
+```
+spring:
+  jpa:
+    show-sql: true
+  h2:
+    console:
+      enabled: true
+      path: '/h2-console'
+  datasource:
+    url: jdbc:h2:mem:spring-app;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driverClassName: org.h2.Driver
+    username: sa
+    password: 
+    database-platform: org.hibernate.dialect.H2Dialect
+```
+Check startup logs warnings
+```
+HHH90000021: Encountered deprecated setting [javax.persistence.sharedCache.mode], use [jakarta.persistence.sharedCache.mode] instead
+spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+```
 
 validation
 - getOneMustExist
