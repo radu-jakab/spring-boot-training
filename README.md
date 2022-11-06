@@ -8,9 +8,9 @@ That being said, this is by no means a comprehensive collection of everything Sp
 
 ## Pre-requisites
 - use IntelliJ for and IDE if possible
-- have Java 17, docker, maven, npm, git, postman installed
+- have Java 17, docker, maven, git, postman installed
 
-- discuss HTTP, AOP, Java Reflection  
+- discuss HTTP, MVC / REST, AOP, Java Reflection  
 -- https://code.tutsplus.com/tutorials/http-the-protocol-every-web-developer-must-know-part-1--net-31177  
 -- http://www.andrewewhite.net/wordpress/2010/03/17/aspectj-annotation-tutorial/  
 -- https://www.sitepoint.com/java-reflection-api-tutorial/  
@@ -25,6 +25,11 @@ The requirements are presented in individual steps, starting with 00. Project Sp
 
 ## Topics
 
+### 00. Training Intro
+Project specs
+Layered architectures - rules and benefits
+Target topics, training schedule
+
 ### 01. Spring initializr
 Create a project using https://start.spring.io
 Select Maven packaging, Java language, Spring Boot 3.0.0, Java 17 and Spring Web dependency
@@ -35,14 +40,14 @@ The @Controller and @RestController annotation
 Exposing our first API endpoint
 
 ### 03. Controllers
-Layered architectures - rules and benefits
 Layer-based vs module-based folder structure
 Record classes
 Setup lombok
 Venue DTO, endpoints
 Courier DTO, endpoints
 Package scanning: convention vs configuration
-Spring components: @Controller, @Service, @Repository
+Spring components: @Controller, @Service, @Repository, @Configuration
+Dependency Injection
 
 ### 04. OpenAPI and Swagger-UI
 Why OpenAPI; see also https://swagger.io/docs/specification/about/
@@ -138,9 +143,30 @@ Using variables and scripts
 
 ### 09. Seeding Data
 commandline runner
-seedData.sql
-Discuss Liquibase
+seedData.sql, defer-datasource-initialization: true
+Discuss Liquibase, jackson-populator
+
+### 10. Bottom-up approach
+Modules folder structure: model, repo, service, rest, dto
+Add client address, delivery products, delivery (model, repo, service, controller, dto)
+BigDecimal
+Object linking; @OneToMany, @ManyToOne, @ManyToMany
+Cascading DB operations
+Lazy and Eager loading
+Breaking JSON serialization and toString cycles
+Providing ID to DeliveryProduct => observe non-transactional saving of ClientAddress
 
 
-validation
-- getOneMustExist
+TODO:
+	validation
+		- getOneMustExist
+	spring jpa
+		- repos, queries, query DSL
+		- L2 caching
+		- transactions
+		- specification API
+	spring profiles
+	junit, mockito
+	test containers
+	mockmvc
+	controller advice and exception handling
