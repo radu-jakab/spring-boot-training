@@ -23,7 +23,7 @@ The requirements are presented in individual steps, starting with 00. Project Sp
 - [x] data structure
 - [x] functional requirements
 
-## Topics
+## Building a REST server
 
 ### 00. Training Intro
 Project specs
@@ -156,17 +156,49 @@ Lazy and Eager loading
 Breaking JSON serialization and toString cycles
 Providing ID to DeliveryProduct => observe non-transactional saving of ClientAddress
 
+### 11. Validating data
+Add i18n messages support, LocaleResolver
+Add Validator classes; full validation VS step-by-step
+Add @ControllerAdvice
+Add/discuss Problem library (https://github.com/zalando/problem)
+```
+        <dependency>
+            <groupId>org.zalando</groupId>
+            <artifactId>problem</artifactId>
+            <version>${zalando.problem.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.zalando</groupId>
+            <artifactId>jackson-datatype-problem</artifactId>
+            <version>${zalando.problem.version}</version>
+        </dependency>
+```
+getOneMustExist methods
 
-TODO:
-	validation
-		- getOneMustExist
-	spring jpa
-		- repos, queries, query DSL
-		- L2 caching
-		- transactions
-		- specification API
-	spring profiles
-	junit, mockito
-	test containers
-	mockmvc
-	controller advice and exception handling
+### 12. Spring profiles
+Defining and selecting profiles
+Conditional properties and bean creation
+
+## Spring JPA
+
+### 13. Queries
+Method name QL
+Hibernate query EL (JPQL)
+Native queries
+
+### 14. Transactions
+General purpose of transactions
+Rollback mechanisms
+Proxy gotchas (same-class, non-public methods, repo defaults, read-only)
+Lazy initialization and open-session-in-view
+
+### 15. Specification API and DSL
+
+## Developer testing
+
+### 16. JUnit, Mockito
+
+### 17. MockMVC
+
+### 18. Test Containers
+

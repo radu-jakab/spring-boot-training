@@ -1,0 +1,27 @@
+package radu.jakab.springboottraining.client.service;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import radu.jakab.springboottraining.client.dto.ClientAddressDTO;
+import radu.jakab.springboottraining.client.model.ClientAddress;
+import radu.jakab.springboottraining.client.repo.ClientAddressRepo;
+
+@Service
+@RequiredArgsConstructor
+public class ClientAddressService {
+
+    private final ClientAddressRepo clientAddressRepo;
+
+    private final ClientAddressMapper clientAddressMapper;
+
+    public ClientAddressDTO getOne(String id) {
+        ClientAddress result = clientAddressRepo.findById(id).orElse(null);
+        return clientAddressMapper.mapClientAddressToDTO(result);
+    }
+
+    public ClientAddressDTO create(ClientAddressDTO clientAddressDTO) {
+        ClientAddress result = clientAddressMapper.mapDTOtoClientAddress(clientAddressDTO);
+        result = clientAddressRepo.save(result);
+        return clientAddressMapper.mapClientAddressToDTO(result);
+    }
+}
