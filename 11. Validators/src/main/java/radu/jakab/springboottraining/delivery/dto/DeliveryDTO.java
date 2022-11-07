@@ -3,6 +3,7 @@ package radu.jakab.springboottraining.delivery.dto;
 import lombok.Data;
 import radu.jakab.springboottraining.client.dto.ClientAddressDTO;
 import radu.jakab.springboottraining.courier.dto.CourierDTO;
+import radu.jakab.springboottraining.delivery.model.DeliveryStatusEnum;
 import radu.jakab.springboottraining.venue.dto.VenueDTO;
 
 import java.math.BigDecimal;
@@ -12,6 +13,7 @@ import java.util.List;
 @Data
 public class DeliveryDTO {
     private String id;
+    private DeliveryStatusEnum status;
     private VenueDTO venue;
     private ClientAddressDTO clientAddress;
     private CourierDTO courier;

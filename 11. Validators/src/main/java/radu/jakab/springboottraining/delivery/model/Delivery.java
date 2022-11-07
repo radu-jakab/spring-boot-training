@@ -21,6 +21,10 @@ public class Delivery {
     @UuidGenerator
     private String id;
 
+    @Column
+    @Enumerated(EnumType.STRING)
+    private DeliveryStatusEnum status;
+
     @ManyToOne
     private Venue venue;
 

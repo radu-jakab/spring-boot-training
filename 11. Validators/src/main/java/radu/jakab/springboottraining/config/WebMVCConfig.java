@@ -1,6 +1,7 @@
 package radu.jakab.springboottraining.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -39,6 +40,7 @@ public class WebMVCConfig implements WebMvcConfigurer {
     @Primary
     public ObjectMapper objectMapper() {
         return new ObjectMapper()
-                .registerModule(new ProblemModule().withStackTraces(false));
+                .registerModule(new ProblemModule().withStackTraces(false))
+                .registerModule(new JavaTimeModule());
     }
 }
