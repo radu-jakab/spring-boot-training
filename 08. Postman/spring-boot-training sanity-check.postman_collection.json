@@ -161,7 +161,13 @@
 					],
 					"request": {
 						"method": "POST",
-						"header": [],
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "ro",
+								"type": "text"
+							}
+						],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n  \"id\": \"some id\",\r\n  \"name\": \"Gigi\",\r\n  \"lat\": 30,\r\n  \"lon\": 35,\r\n  \"active\": true\r\n}",
@@ -172,7 +178,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/courier",
+							"raw": "http://localhost:8080/courier?lang=ro",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -180,6 +186,12 @@
 							"port": "8080",
 							"path": [
 								"courier"
+							],
+							"query": [
+								{
+									"key": "lang",
+									"value": "ro"
+								}
 							]
 						}
 					},
@@ -435,6 +447,219 @@
 							"path": [
 								"courier",
 								"{{courier_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delivery",
+			"item": [
+				{
+					"name": "Create venue (delivery)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"delivery_venue_id\", jsonData.id);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"{{venue_id}}\",\r\n    \"name\": \"Some name\",\r\n    \"lat\": 10,\r\n    \"lon\": 20,\r\n    \"contactNumber\": \"+40 700 000 000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/venue",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"venue"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create courier (delivery)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = pm.response.json();\r",
+									"pm.environment.set(\"delivery_courier_id\", jsonData.id);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"some id\",\r\n  \"name\": \"Gigi\",\r\n  \"lat\": 30,\r\n  \"lon\": 35,\r\n  \"active\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/courier",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"courier"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create delivery",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"venue\": {\r\n        \"id\": \"{{delivery_venue_id}}\",\r\n        \"lat\": 11.01,\r\n        \"lon\": 11.01\r\n    },\r\n    \"clientAddress\": {\r\n        \"id\": \"some-address-id\",\r\n        \"clientId\": \"some-client-id\",\r\n        \"clientName\": \"Some Name\",\r\n        \"lat\": 11,\r\n        \"lon\": 11\r\n    },\r\n    \"courier\": {\r\n        \"id\": \"{{delivery_courier_id}}\"\r\n    },\r\n    \"products\": [\r\n        {\r\n            \"name\": \"Zahar\",\r\n            \"cost\": 10,\r\n            \"quantity\": 2\r\n        },\r\n        {\r\n            \"name\": \"Oua\",\r\n            \"cost\": 5,\r\n            \"quantity\": 3\r\n        },\r\n        {\r\n            \"name\": \"Faina\",\r\n            \"cost\": 10,\r\n            \"quantity\": 1.5\r\n        }\r\n    ],\r\n    \"deliveryCost\": 20,\r\n    \"expectedDeliveryTime\": \"2022-11-20T19:00:00.000Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/delivery/request-new",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"delivery",
+								"request-new"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Query",
+			"item": [
+				{
+					"name": "Get Deliveries with Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/delivery/with-status?status=NEW",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"delivery",
+								"with-status"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "NEW"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Ongoing Deliveries",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/delivery/all-ongoing",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"delivery",
+								"all-ongoing"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Ongoing Late Deliveries",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/delivery/all-ongoing-late",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"delivery",
+								"all-ongoing-late"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Ongoing for Courier",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/delivery/all-ongoing-for-courier?courierId=5dd3b923-bb19-4bab-9410-dde95e61b8e8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"delivery",
+								"all-ongoing-for-courier"
+							],
+							"query": [
+								{
+									"key": "courierId",
+									"value": "5dd3b923-bb19-4bab-9410-dde95e61b8e8"
+								}
 							]
 						}
 					},
