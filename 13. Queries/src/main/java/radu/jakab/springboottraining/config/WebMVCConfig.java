@@ -1,6 +1,7 @@
 package radu.jakab.springboottraining.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
@@ -42,17 +43,23 @@ public class WebMVCConfig implements WebMvcConfigurer {
     @Primary
     @Profile(DeliveryAppProfiles.DEV)
     public ObjectMapper objectMapperDev() {
-        return new ObjectMapper()
+        ObjectMapper m = new ObjectMapper()
                 .registerModule(new ProblemModule().withStackTraces(true))
                 .registerModule(new JavaTimeModule());
+        m.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+
+        return m;
     }
 
     @Bean
     @Primary
     @Profile(DeliveryAppProfiles.PROD)
     public ObjectMapper objectMapperProd() {
-        return new ObjectMapper()
+        ObjectMapper m = new ObjectMapper()
                 .registerModule(new ProblemModule().withStackTraces(false))
                 .registerModule(new JavaTimeModule());
+        m.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+
+        return m;
     }
 }
