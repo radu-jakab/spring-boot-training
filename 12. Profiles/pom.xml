@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>radu.jakab</groupId>
-    <artifactId>11-validators</artifactId>
+    <artifactId>12-profiles</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-boot-training</name>
     <description>Demo project for Spring Boot</description>

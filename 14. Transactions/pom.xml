@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>radu.jakab</groupId>
-    <artifactId>13-queries</artifactId>
+    <artifactId>14-transactions</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>spring-boot-training</name>
     <description>Demo project for Spring Boot</description>
