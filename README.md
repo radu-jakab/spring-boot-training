@@ -193,6 +193,7 @@ Proxy gotchas (same-class, non-public methods, repo defaults, read-only)
 Lazy initialization and open-session-in-view
 
 ### 15. Specification API and DSL
+Read more: generic specifications, https://www.baeldung.com/rest-api-search-language-spring-data-specifications
 
 ## Developer testing
 
