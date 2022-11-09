@@ -4,3 +4,13 @@ spring:
     driverClassName: org.postgresql.Driver
     username: postgres
     password: postgrespw
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE

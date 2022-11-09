@@ -1,7 +1,9 @@
 package radu.jakab.springboottraining.delivery.repo;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.stereotype.Repository;
 import radu.jakab.springboottraining.delivery.model.Delivery;
 import radu.jakab.springboottraining.delivery.model.DeliveryStatusEnum;
@@ -10,7 +12,9 @@ import java.time.ZonedDateTime;
 import java.util.List;
 
 @Repository
-public interface DeliveryRepo extends JpaRepository<Delivery, String> {
+public interface DeliveryRepo extends JpaRepository<Delivery, String>,
+        QuerydslPredicateExecutor<Delivery>,
+        JpaSpecificationExecutor<Delivery> {
 
     List<Delivery> findDeliveryByStatusIs(DeliveryStatusEnum status);
 

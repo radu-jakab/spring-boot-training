@@ -1,5 +1,8 @@
+springdoc:
+  packages-to-exclude: com.example.demo.venue.rest
+
 logging:
   level:
     org:
       springframework:
-        web: DEBUG
+        web: TRACE

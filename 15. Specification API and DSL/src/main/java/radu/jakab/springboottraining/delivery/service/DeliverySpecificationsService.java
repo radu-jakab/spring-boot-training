@@ -1,66 +1,64 @@
 package radu.jakab.springboottraining.delivery.service;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-import org.zalando.problem.Problem;
-import org.zalando.problem.Status;
 import radu.jakab.springboottraining.delivery.dto.DeliveryDTO;
 import radu.jakab.springboottraining.delivery.dto.DeliverySearchDTO;
-import radu.jakab.springboottraining.delivery.model.Delivery;
 import radu.jakab.springboottraining.delivery.model.DeliveryStatusEnum;
 import radu.jakab.springboottraining.delivery.repo.DeliveryRepo;
 
 import java.time.ZonedDateTime;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class DeliveryQueryJPQLService implements DeliveryQueryAPI {
-
+public class DeliverySpecificationsService implements DeliveryQueryAPI {
     private final DeliveryRepo deliveryRepo;
     private final DeliveryMapper deliveryMapper;
 
     @Override
     public List<DeliveryDTO> getAllDeliveriesWithStatus(DeliveryStatusEnum status) {
-        List<Delivery> result = deliveryRepo.findDeliveryByStatusIs(status);
-        return result.stream()
-                .map(deliveryMapper::mapDeliveryToDTO)
-                .collect(Collectors.toList());
+        DeliverySearchDTO dto = new DeliverySearchDTO();
+        dto.setStatusIn(Collections.singletonList(status));
+        return search(dto).getContent();
     }
 
     @Override
     public List<DeliveryDTO> getAllOngoingDeliveries() {
-        List<Delivery> result = deliveryRepo.getOngoingDeliveries();
-        return result.stream()
-                .map(deliveryMapper::mapDeliveryToDTO)
-                .collect(Collectors.toList());
+        DeliverySearchDTO dto = new DeliverySearchDTO();
+        List<DeliveryStatusEnum> statuses = Arrays.asList(DeliveryStatusEnum.NEW,
+                DeliveryStatusEnum.ASSIGNED, DeliveryStatusEnum.PICKED_UP);
+        dto.setStatusIn(statuses);
+        return search(dto).getContent();
     }
 
     @Override
     public List<DeliveryDTO> getAllOngoingLateDeliveries() {
+        DeliverySearchDTO dto = new DeliverySearchDTO();
         List<DeliveryStatusEnum> statuses = Arrays.asList(DeliveryStatusEnum.NEW,
                 DeliveryStatusEnum.ASSIGNED, DeliveryStatusEnum.PICKED_UP);
-        List<Delivery> result = deliveryRepo.findAllByStatusInAndExpectedDeliveryTimeAfter(statuses, ZonedDateTime.now());
-        return result.stream()
-                .map(deliveryMapper::mapDeliveryToDTO)
-                .collect(Collectors.toList());
+        dto.setStatusIn(statuses);
+        dto.setExpectedDeliveryTimeBefore(ZonedDateTime.now());
+        return search(dto).getContent();
     }
 
     @Override
-    @Transactional
     public List<DeliveryDTO> getAllOngoingDeliveriesForCourier(String courierId) {
-        List<Delivery> result = deliveryRepo.getOngoingDeliveriesByCourier(courierId);
-        return result.stream()
-                .map(deliveryMapper::mapDeliveryToDTO)
-                .collect(Collectors.toList());
+        DeliverySearchDTO dto = new DeliverySearchDTO();
+        List<DeliveryStatusEnum> statuses = Arrays.asList(DeliveryStatusEnum.NEW,
+                DeliveryStatusEnum.ASSIGNED, DeliveryStatusEnum.PICKED_UP);
+        dto.setStatusIn(statuses);
+        dto.setCourierId(courierId);
+        return search(dto).getContent();
     }
 
     @Override
     public Page<DeliveryDTO> search(DeliverySearchDTO dto) {
-        throw Problem.valueOf(Status.NOT_IMPLEMENTED, "Not implemented, sorry!");
+        DeliverySpecifications spec = new DeliverySpecifications(dto);
+        return deliveryRepo.findAll(spec, dto.getPage().toPageRequest())
+                .map(deliveryMapper::mapDeliveryToDTO);
     }
 }

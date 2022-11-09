@@ -1,9 +1,11 @@
 package radu.jakab.springboottraining.delivery.rest;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import radu.jakab.springboottraining.delivery.dto.DeliveryDTO;
+import radu.jakab.springboottraining.delivery.dto.DeliverySearchDTO;
 import radu.jakab.springboottraining.delivery.model.DeliveryStatusEnum;
 import radu.jakab.springboottraining.delivery.service.DeliveryQueryAPI;
 import radu.jakab.springboottraining.delivery.service.DeliveryService;
@@ -46,6 +48,12 @@ public class DeliveryController {
     @GetMapping("all-ongoing-late")
     public ResponseEntity<List<DeliveryDTO>> getAllOngoingLateDeliveries() {
         List<DeliveryDTO> result = deliveryQueryAPI.getAllOngoingLateDeliveries();
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("search")
+    public ResponseEntity<Page<DeliveryDTO>> search(@RequestBody DeliverySearchDTO dto) {
+        Page<DeliveryDTO> result = deliveryQueryAPI.search(dto);
         return ResponseEntity.ok(result);
     }
 
