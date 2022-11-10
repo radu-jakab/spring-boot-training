@@ -3,6 +3,7 @@ package radu.jakab.springboottraining.tools;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import radu.jakab.springboottraining.courier.CourierService;
 import radu.jakab.springboottraining.courier.dto.CourierDTO;

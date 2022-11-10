@@ -41,7 +41,7 @@ public class WebMVCConfig implements WebMvcConfigurer {
 
     @Bean
     @Primary
-    @Profile(DeliveryAppProfiles.DEV)
+    @Profile({DeliveryAppProfiles.DEV})
     public ObjectMapper objectMapperDev() {
         ObjectMapper m = new ObjectMapper()
                 .registerModule(new ProblemModule().withStackTraces(true))

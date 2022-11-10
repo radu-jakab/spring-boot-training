@@ -1,6 +1,7 @@
 spring:
   jpa:
     show-sql: true
+    open-in-view: false
   h2:
     console:
       enabled: true
@@ -10,7 +11,3 @@ spring:
     driverClassName: org.h2.Driver
     username: sa
     password: sa
-    database-platform: org.hibernate.dialect.H2Dialect
-
-springdoc:
-  packages-to-exclude: com.example.demo.venue.rest
