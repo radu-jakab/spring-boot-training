@@ -1,6 +1,8 @@
 package com.example.demo.venue.service;
 
 import com.example.demo.venue.dto.VenueDTO;
+import com.example.demo.venue.repo.VenueRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,9 +12,12 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class VenueService {
 
     private List<VenueDTO> VENUES = new ArrayList<>();
+
+    private final VenueRepo venueRepo;
 
     public VenueDTO create(VenueDTO venueDTO) {
         venueDTO.setId(UUID.randomUUID().toString());
