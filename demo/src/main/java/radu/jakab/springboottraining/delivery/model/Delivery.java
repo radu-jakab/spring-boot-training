@@ -8,6 +8,7 @@ import radu.jakab.springboottraining.courier.Courier;
 import radu.jakab.springboottraining.venue.Venue;
 
 import java.math.BigDecimal;
+import java.time.ZonedDateTime;
 import java.util.List;
 
 @Data
@@ -27,10 +28,10 @@ public class Delivery {
     @ManyToOne
     private Courier courier;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<DeliveryProduct> products;
 
     private BigDecimal deliveryCost;
     private BigDecimal totalValue;
-    private BigDecimal expectedDeliveryTime;
+    private ZonedDateTime expectedDeliveryTime;
 }
