@@ -1,9 +1,13 @@
-package radu.jakab.springboottraining.venue;
+package radu.jakab.springboottraining.venue.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Schema(name = "Venue", description = "Model for Venue objects")
 public class VenueDTO {
 

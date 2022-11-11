@@ -6,7 +6,7 @@ import lombok.Data;
 public class ClientAddressDTO {
     private String id;
     private String clientId;
-    private String name;
+    private String clientName;
     private Double lat;
     private Double lon;
 }

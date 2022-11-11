@@ -1,16 +1,13 @@
-package radu.jakab.springboottraining.venue;
+package radu.jakab.springboottraining.courier.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.UuidGenerator;
-import radu.jakab.springboottraining.delivery.model.Delivery;
-
-import java.util.List;
 
 @Data
 @Entity
-@Table(name = "venue")
-public class Venue {
+@Table(name = "courier")
+public class Courier {
 
     @Id
     @GeneratedValue
@@ -27,8 +24,5 @@ public class Venue {
     private Double lon;
 
     @Column
-    private String contactNumber;
-
-    @OneToMany(mappedBy = "venue")
-    private List<Delivery> deliveries;
+    private Boolean active;
 }

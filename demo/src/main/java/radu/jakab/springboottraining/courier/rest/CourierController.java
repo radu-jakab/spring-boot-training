@@ -1,4 +1,4 @@
-package radu.jakab.springboottraining.courier;
+package radu.jakab.springboottraining.courier.rest;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import radu.jakab.springboottraining.courier.dto.CourierDTO;
 import radu.jakab.springboottraining.courier.dto.CourierInfoDTO;
 import radu.jakab.springboottraining.courier.dto.CourierLocationDTO;
+import radu.jakab.springboottraining.courier.service.CourierService;
 
 import java.util.List;
 
@@ -56,7 +57,7 @@ public class CourierController implements CourierAPI {
     }
 
     public ResponseEntity<CourierDTO> getOne(String id) {
-        CourierDTO result = courierService.getOne(id);
+        CourierDTO result = courierService.getOneMustExistDTO(id);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 

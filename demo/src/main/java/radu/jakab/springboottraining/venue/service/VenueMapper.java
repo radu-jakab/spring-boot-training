@@ -1,7 +1,9 @@
-package radu.jakab.springboottraining.venue;
+package radu.jakab.springboottraining.venue.service;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
+import radu.jakab.springboottraining.venue.dto.VenueDTO;
+import radu.jakab.springboottraining.venue.model.Venue;
 
 import java.util.List;
 

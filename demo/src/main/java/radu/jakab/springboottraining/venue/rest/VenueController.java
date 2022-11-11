@@ -1,10 +1,12 @@
-package radu.jakab.springboottraining.venue;
+package radu.jakab.springboottraining.venue.rest;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import radu.jakab.springboottraining.venue.dto.VenueDTO;
+import radu.jakab.springboottraining.venue.service.VenueService;
 
 import java.util.List;
 
@@ -30,7 +32,7 @@ public class VenueController implements VenueAPI {
     }
 
     public ResponseEntity<VenueDTO> getOne(String id) {
-        VenueDTO result = venueService.getOne(id);
+        VenueDTO result = venueService.getOneMustExistDTO(id);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 

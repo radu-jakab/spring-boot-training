@@ -1,5 +1,6 @@
 package radu.jakab.springboottraining.delivery.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -8,6 +9,9 @@ import java.math.BigDecimal;
 public class DeliveryProductDTO {
     private String id;
     private String name;
-    private Double quantity;
     private BigDecimal cost;
+    private Double quantity;
+
+    @JsonIgnore
+    private DeliveryDTO delivery;
 }

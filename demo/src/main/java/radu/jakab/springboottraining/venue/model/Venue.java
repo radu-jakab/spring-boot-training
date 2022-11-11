@@ -1,4 +1,4 @@
-package radu.jakab.springboottraining.client.model;
+package radu.jakab.springboottraining.venue.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -6,8 +6,8 @@ import org.hibernate.annotations.UuidGenerator;
 
 @Data
 @Entity
-@Table(name = "client_address")
-public class ClientAddress {
+@Table(name = "venue")
+public class Venue {
 
     @Id
     @GeneratedValue
@@ -15,14 +15,14 @@ public class ClientAddress {
     private String id;
 
     @Column
-    private String clientId;
-
-    @Column
-    private String clientName;
+    private String name;
 
     @Column
     private Double lat;
 
     @Column
     private Double lon;
+
+    @Column
+    private String contactNumber;
 }
