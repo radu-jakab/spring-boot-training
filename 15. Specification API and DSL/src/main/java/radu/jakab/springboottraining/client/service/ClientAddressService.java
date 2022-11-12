@@ -2,6 +2,8 @@ package radu.jakab.springboottraining.client.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import radu.jakab.springboottraining.client.dto.ClientAddressDTO;
 import radu.jakab.springboottraining.client.model.ClientAddress;
 import radu.jakab.springboottraining.client.repo.ClientAddressRepo;
@@ -20,6 +22,7 @@ public class ClientAddressService {
         return clientAddressMapper.mapClientAddressToDTO(result);
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     public ClientAddressDTO create(ClientAddressDTO clientAddressDTO) {
         ClientAddress result = clientAddressMapper.mapDTOtoClientAddress(clientAddressDTO);
 

@@ -31,8 +31,14 @@ public class DeliveryService {
     private final MessagesService messagesService;
     private final DeliveryValidator deliveryValidator;
 
-    @Transactional
+    @org.springframework.transaction.annotation.Transactional(transactionManager = "write")
     public DeliveryDTO requestDelivery(DeliveryDTO deliveryDTO) {
+        //do other stuff
+
+        return doStuff(deliveryDTO);
+    }
+
+    private DeliveryDTO doStuff(DeliveryDTO deliveryDTO) {
         Delivery delivery = deliveryMapper.mapDTOtoDelivery(deliveryDTO);
         setDeliveryDefaults(delivery);
         deliveryValidator.validateCreate(delivery);

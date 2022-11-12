@@ -53,19 +53,9 @@ public class CourierService {
         return courierMapper.mapCourierToDTO(courier);
     }
 
-    public CourierDTO updateCourierLocation(CourierLocationDTO courierLocationDTO) {
-        // find the object in the database
-        Courier courier = getOneMustExist(courierLocationDTO.getId());
-        courierValidator.validateCourierLocationUpdate(courier);
-
-        // write relevant fields to it
-        courierMapper.writeLocationDTOFieldsToCourier(courierLocationDTO, courier);
-
+    public void updateCourierLocation(CourierLocationDTO dto) {
         // save object
-        courier = courierRepo.save(courier);
-
-        // map the resulted entity back into a DTO
-        return courierMapper.mapCourierToDTO(courier);
+        courierRepo.updateCourierLocation(dto.getId(), dto.getLat(), dto.getLon());
     }
 
     public CourierDTO activateCourier(String courierId) {

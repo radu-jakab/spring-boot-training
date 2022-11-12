@@ -23,9 +23,9 @@ public interface CourierAPI {
 
     @PutMapping("location/{courierId}")
     @Operation(summary = "Allows updating of courier location fields: lat, lon. Other fields are not affected by this operation")
-    ResponseEntity<CourierDTO> updateCourierLocation(@PathVariable String courierId,
-                                                     @RequestParam Double lat,
-                                                     @RequestParam Double lon);
+    ResponseEntity<Object> updateCourierLocation(@PathVariable String courierId,
+                                                 @RequestParam Double lat,
+                                                 @RequestParam Double lon);
 
     @PutMapping("activate/{courierId}")
     @Operation(summary = "Allows starting a courier's work shift")

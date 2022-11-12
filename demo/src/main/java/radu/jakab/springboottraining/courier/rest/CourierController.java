@@ -33,11 +33,11 @@ public class CourierController implements CourierAPI {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-    public ResponseEntity<CourierDTO> updateCourierLocation(String courierId,
-                                                            Double lat,
-                                                            Double lon) {
-        CourierDTO result = courierService.updateCourierLocation(new CourierLocationDTO(courierId, lat, lon));
-        return new ResponseEntity<>(result, HttpStatus.OK);
+    public ResponseEntity<Object> updateCourierLocation(String courierId,
+                                                        Double lat,
+                                                        Double lon) {
+        courierService.updateCourierLocation(new CourierLocationDTO(courierId, lat, lon));
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     public ResponseEntity<CourierDTO> activateCourier(String courierId) {
